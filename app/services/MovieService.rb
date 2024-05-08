@@ -6,11 +6,20 @@ class MovieService
   # Input: movie_name - name of the movie you want to search
   # response: [movies] - returns list of all movies that matches the search criteria
   def self.search(movie_name)
-    uri = URI("#{BASE_URL}/search/movie")
-    params = { api_key: API_KEY, query: movie_name }
-    uri.query = URI.encode_www_form(params)
-
+    uri = build_uri(movie_name)
     response = Net::HTTP.get_response(uri)
+
     JSON.parse(response.body) if response.is_a?(Net::HTTPSuccess)
+  end
+
+  private
+
+  # Build URI for API request
+  # @param movie_name [String]
+  # @return [URI]
+  def self.build_uri(movie_name)
+    URI("#{BASE_URL}/search/movie").tap do |uri|
+      uri.query = URI.encode_www_form(api_key: API_KEY, query: movie_name)
+    end
   end
 end

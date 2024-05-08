@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
+  before_action :fetch_movies, only: [:index]
 
-  before_action :set_movies, only: %w[index]
   def index
     respond_to do |format|
       format.json { render json: @movies }
@@ -10,7 +10,11 @@ class MoviesController < ApplicationController
 
   private
 
-  def set_movies
-    @movies = MovieService.search(params[:query])
+  def fetch_movies
+    @movies = MovieService.search(search_params[:query])
+  end
+
+  def search_params
+    params.permit(:query)
   end
 end
