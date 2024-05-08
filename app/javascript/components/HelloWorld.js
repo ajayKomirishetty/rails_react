@@ -2,17 +2,19 @@ import React from "react"
 import PropTypes from "prop-types"
 import axios from 'axios'
 
-const HelloWorld = (props) => {
-   axios.get('https://jsonplaceholder.typicode.com/todos/1')
-    .then(response => {
-      console.log(response.data);
-    })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-    });
+const HelloWorld = ({data}) => {
+  debugger
+   // axios.get('https://jsonplaceholder.typicode.com/todos/1')
+   //  .then(response => {
+   //    console.log(response.data);
+   //  })
+   //  .catch(error => {
+   //    console.error('Error fetching data:', error);
+   //  });
+  console.log(data)
   return (
     <React.Fragment>
-      Greeting : {'data'}
+      Greetingscscscscscccc : {data.title}
     </React.Fragment>
   )
 }

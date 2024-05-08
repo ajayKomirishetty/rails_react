@@ -54,3 +54,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "shakapacker", "= 7.2"
 
 gem "react-rails", "= 3.2"
+
+gem "tailwindcss-rails", "~> 2.5"
